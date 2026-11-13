@@ -88,8 +88,10 @@ function buildSyncButton() {
 
 function registerServiceWorker() {
   if (!('serviceWorker' in navigator) || location.protocol === 'file:') return;
+  // Reload only when the user accepts an update, never on the first install (it would wipe typing).
+  let accepted = false;
   navigator.serviceWorker.register('sw.js').then(reg => {
-    const offer = worker => toast('A new version of Daybook is ready.', { action: 'Reload', onAction: () => worker.postMessage('skipWaiting'), ms: 30000 });
+    const offer = worker => toast('A new version of Daybook is ready.', { action: 'Reload', onAction: () => { accepted = true; worker.postMessage('skipWaiting'); }, ms: 30000 });
     if (reg.waiting && navigator.serviceWorker.controller) offer(reg.waiting);
     reg.addEventListener('updatefound', () => {
       const w = reg.installing;
@@ -98,7 +100,7 @@ function registerServiceWorker() {
     setInterval(() => reg.update().catch(() => {}), 60 * 60e3);
   }).catch(err => console.warn('SW registration failed', err));
   let reloading = false;
-  navigator.serviceWorker.addEventListener('controllerchange', () => { if (!reloading) { reloading = true; location.reload(); } });
+  navigator.serviceWorker.addEventListener('controllerchange', () => { if (accepted && !reloading) { reloading = true; location.reload(); } });
 }
 
 async function start() {

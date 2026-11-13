@@ -1,6 +1,6 @@
 // Offline support: precache the app shell; serve it cache-first.
 // Bump VERSION whenever any file changes so phones pick up the update.
-const VERSION = '2026-11-13.1';
+const VERSION = '2026-11-13.2';
 const CACHE = `daybook-${VERSION}`;
 const ASSETS = [
   './',
