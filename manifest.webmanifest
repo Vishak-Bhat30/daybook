@@ -1,0 +1,22 @@
+{
+  "name": "Daybook",
+  "short_name": "Daybook",
+  "description": "Plan your days, keep a diary and track your fitness.",
+  "id": "./",
+  "start_url": "./#/today",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f3f0",
+  "theme_color": "#f4f3f0",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Plan tomorrow", "url": "./#/plan/tomorrow", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Write today's diary", "url": "./#/diary/today", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Log a workout", "url": "./#/fitness/new", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
